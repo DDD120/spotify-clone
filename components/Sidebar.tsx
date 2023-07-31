@@ -14,7 +14,7 @@ interface Props {
   children: React.ReactNode
 }
 
-function Sidebar({ children }: Props) {
+function Sidebar({ songs, children }: Props) {
   const pathname = usePathname()
   const routers = useMemo(
     () => [

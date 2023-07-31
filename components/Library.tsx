@@ -42,6 +42,7 @@ function Library({ songs }: Props) {
       <div className="flex flex-col gap-y-2 mt-4 px-3">
         {songs.map((song) => (
           <MediaItem key={song.id} onClick={() => {}} song={song} />
+        ))}
       </div>
     </div>
   )
