@@ -8,22 +8,26 @@ import useUploadModal from "@/hooks/useUploadModal"
 import { Song } from "@/types"
 import MediaItem from "./MediaItem"
 import useOnPlay from "@/hooks/useOnPlay"
+import useSubscribeModal from "@/hooks/useSubscribeModal"
 
 interface Props {
   songs: Song[]
 }
 
 function Library({ songs }: Props) {
+  const subscribeModal = useSubscribeModal()
   const authModal = useAuthModal()
   const uploadModal = useUploadModal()
-  const { user } = useUser()
+  const { user, subscription } = useUser()
   const onPlay = useOnPlay(songs)
 
   const onClick = () => {
     if (!user) {
       return authModal.onOpen()
     }
-    // TODO : Check for subscription
+    if (!subscription) {
+      return subscribeModal.onOpen()
+    }
 
     return uploadModal.onOpen()
   }
